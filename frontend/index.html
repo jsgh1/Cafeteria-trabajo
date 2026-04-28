@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cafetería Aurora - Documentación</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav"><strong>☕ Cafetería Aurora</strong><a href="crud.html">Ir al CRUD</a></nav>
+    <section class="hero-content">
+      <p class="pill">Proyecto Full Stack: DB + Backend + Frontend</p>
+      <h1>Una cafetería digital con Docker, Liquibase, PHP, Swagger y una interfaz visual.</h1>
+      <p>Este sitio documenta los 3 repositorios del trabajo y permite usar el CRUD visual conectado al backend.</p>
+      <a class="button" href="crud.html">Abrir panel administrativo</a>
+    </section>
+  </header>
+  <main class="container">
+    <section class="grid">
+      <article class="card"><h2>Repo DB</h2><p>PostgreSQL con 5 entidades, datos iniciales, rollbacks, Liquibase y GitHub Actions para bloquear merges con errores.</p></article>
+      <article class="card"><h2>Repo Backend</h2><p>API REST en PHP por capas: Models, Repositories, Services y Controllers. Incluye Swagger con 30 endpoints.</p></article>
+      <article class="card"><h2>Repo Frontend</h2><p>Landing page y CRUD visual en HTML, CSS, JavaScript y Axios conectado al backend.</p></article>
+    </section>
+    <section class="timeline card">
+      <h2>Cómo levantar todo</h2>
+      <ol>
+        <li>Descomprime <strong>cafeteria-full.zip</strong>.</li>
+        <li>Ejecuta <code>docker compose up --build</code>.</li>
+        <li>Espera a que Liquibase aplique tablas e inserts.</li>
+        <li>Abre <code>http://localhost:8080/docs</code> para Swagger.</li>
+        <li>Abre <code>http://localhost:3000</code> para el frontend.</li>
+      </ol>
+    </section>
+    <section class="card">
+      <h2>Entidades de la base de datos</h2>
+      <p><strong>Primarias:</strong> categorías y productos. <strong>Secundarias:</strong> clientes, pedidos y pedido_items.</p>
+    </section>
+  </main>
+</body>
+</html>

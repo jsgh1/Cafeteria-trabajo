@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS pedido_items;
+DROP TABLE IF EXISTS pedidos;
+DROP TABLE IF EXISTS clientes;
+DROP TABLE IF EXISTS productos;
+DROP TABLE IF EXISTS categorias;

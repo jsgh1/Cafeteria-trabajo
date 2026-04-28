@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CRUD Cafetería Aurora</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <nav class="nav nav-dark"><strong>☕ Panel Cafetería Aurora</strong><a href="index.html">Documentación</a></nav>
+  <main class="container app">
+    <section class="card">
+      <h1>CRUD visual conectado al backend</h1>
+      <p>API base: <code id="apiLabel"></code>. Si cambias el puerto del backend, edita <code>assets/js/app.js</code>.</p>
+      <div id="tabs" class="tabs"></div>
+    </section>
+    <section class="grid-two">
+      <form id="entityForm" class="card form-card"></form>
+      <section class="card">
+        <div class="table-head"><h2 id="tableTitle">Registros</h2><input id="search" placeholder="Filtrar..." /></div>
+        <div id="message" class="message"></div>
+        <div class="table-wrap"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+      </section>
+    </section>
+  </main>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

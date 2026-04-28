@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: cafeteria_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cafeteria_db
+      POSTGRES_USER: cafeteria_user
+      POSTGRES_PASSWORD: cafeteria_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cafeteria_user -d cafeteria_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  liquibase:
+    image: liquibase/liquibase:4.31
+    container_name: cafeteria_liquibase
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./db/liquibase:/liquibase/changelog
+      - ./db/01_tables:/liquibase/01_tables
+      - ./db/09_inserts:/liquibase/09_inserts
+      - ./db/11_rollbacks:/liquibase/11_rollbacks
+    working_dir: /liquibase/changelog
+    command: ["--defaults-file=liquibase.properties", "update"]
+  backend:
+    build: ./backend
+    container_name: cafeteria_backend
+    restart: unless-stopped
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: cafeteria_db
+      DB_USER: cafeteria_user
+      DB_PASSWORD: cafeteria_pass
+    ports:
+      - "8080:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      liquibase:
+        condition: service_completed_successfully
+
+  frontend:
+    build: ./frontend
+    container_name: cafeteria_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
